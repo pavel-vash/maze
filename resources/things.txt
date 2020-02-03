@@ -1,0 +1,20 @@
+#Thing 
+#Name Яблоко
+#Health 20
+#Weight 3
+#Disposable 1
+#EndThing
+
+
+#Thing 
+#Name Серебряный нож
+#Weight 8
+#Strenght 10
+#EndThing
+
+
+#Thing 
+#Name Ключ
+#Weight 1
+#EndThing
+

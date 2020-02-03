@@ -1,0 +1,16 @@
+#Beast 
+#Name Паук
+#Health 20
+#Strength 10
+#Armor 5
+#Inheritance Яблоко 20
+#EndBeast
+
+
+#Beast
+#Name Боевая крыса 
+#Health 30
+#Strength 15
+#Armor 8
+#EndBeast
+
