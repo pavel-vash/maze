@@ -27,7 +27,6 @@ class Maze:
         else:
             curRoom.reactivate()
 
-        print(curRoom.roomMessage)
 
 
 
@@ -48,7 +47,7 @@ class Maze:
                 newThing.read_from_file(f)
                 self.things[newThing.name] = newThing
             elif words[0] == "#Room":
-                newRoom = Room()
+                newRoom = Room(self.beasts, self.things)
                 newRoom.read_from_file(f)
                 self.check_room_correctness(newRoom)
                 self.rooms[newRoom.coordinates] = newRoom
@@ -63,8 +62,8 @@ class Maze:
                 raise ConfFileError(msg)
 
             self.check_walls_in_room(room)
-            self.check_things_in_room(room)
-            self.check_beasts_in_room(room)
+#            self.check_things_in_room(room)
+#            self.check_beasts_in_room(room)
         except ConfFileError as e:
             print("Ошибка в конфигурации комнаты (",
                   room.coordinates, "):\n", e.what() )
@@ -115,28 +114,6 @@ class Maze:
             return ( x, y-1 )
         elif side == "front":
             return ( x, y+1 )
-
-
-
-    def check_things_in_room(self, room: Room):
-        for curThing in room.things:
-            if curThing[0] not in self.things.keys():
-                msg  = "Ошибка. Нет конфигурации для вещи '" + curThing[0] + "' " \
-                        +  "в комнате " + str(room.coordinates)
-                raise ConfFileError(msg)
-
-
-    def check_beasts_in_room(self, room: Room):
-        for curBeast in room.beasts:
-            if curBeast[0] not in self.beasts.keys():
-                msg  = "Ошибка. Нет конфигурации для существа '" + curBeast[0] + "' " \
-                        +  "в комнате " + str(room.coordinates)
-                raise ConfFileError(msg)
-
-
-            
-
-
 
 
 

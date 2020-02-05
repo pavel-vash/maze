@@ -19,13 +19,21 @@ y = 0
 while True :
 
     maze.move_to_room( (x, y) )
+    curRoom = maze.rooms[x, y]
 
-    print(maze.room(x, y).greating)
-    print(maze.room(x,y).variants)
+    if ( len(curRoom.thingsInRoom) > 0 ):
+        print("В комнате находятся:")
+        for thing in curRoom.thingsInRoom:
+            print(thing.name)
+
+    if ( len(curRoom.beastsInRoom) > 0 ):
+        print("А еще вылезли существа:\n")
+        for beast in curRoom.beastsInRoom:
+            print(beast.name)
 
     chose = input ("Ваш выбор:")
 
-    maze.room(x,y).get_chose(chose)
+    curRoom.get_chose(chose)
 
     me.attacked_by (enemy)
     if not me.alive :
