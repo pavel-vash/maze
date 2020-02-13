@@ -14,6 +14,17 @@ maze.read_from_file ("maze_description.txt")
 x = 0
 y = 0
 
+actionVariants = {
+    "t": "Взять вещь",                      \
+    "h": "Ударить врага",                   \
+    "a": "Пойти влево",                     \
+    "s": "Пойти назад",                     \
+    "d": "Пойти вправо",                    \
+    "w": "Пойти вперед",                    \
+    "i": "Заглянуть в мешок",               \
+    "m": "Открыть карту",                   \
+    "v": "Посмотреть характеристики вещи или врага", \
+}
 
 
 while True :
@@ -27,11 +38,49 @@ while True :
             print(thing.name)
 
     if ( len(curRoom.beastsInRoom) > 0 ):
-        print("А еще вылезли существа:\n")
+        print("А еще вылезли существа:")
         for beast in curRoom.beastsInRoom:
             print(beast.name)
 
-    chose = input ("Ваш выбор:")
+    while True:
+        ask = ""
+        for key in actionVariants:
+            ask += key + " : " + actionVariants[key] + "\n"
+
+        choice = input (ask)
+
+        if choice == "t":
+            take_thing(curRoom.thingsInRoom)
+        elif choice == "h":
+            hit_enemy(curRoom.beastsInRoom)
+        elif choice == "i":
+            look_at_invenories()
+        elif choice == "m":
+            show_map()
+        elif choice == "v":
+            show_parameters(curRoom.thingsInRoom, curRoom.beastsInRoom)
+        elif choice == "a":
+            enemy_action(curRoom.beastsInRoom)
+            x = x-1
+            continue
+        elif choice == "s":
+            enemy_action(curRoom.beastsInRoom)
+            y = y-1
+            continue
+        elif choice == "d":
+            enemy_action(curRoom.beastsInRoom)
+            x = x+1
+            continue
+        elif choice == "w":
+            enemy_action(curRoom.beastsInRoom)
+            y = y+1
+            continue
+        else:
+            print("Неизвестное действие")
+            pass
+
+
+
 
     curRoom.get_chose(chose)
 
